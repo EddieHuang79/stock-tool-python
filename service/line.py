@@ -29,5 +29,5 @@ class LineNotice:
 				'to': self.config['myLineId'], 
 				'messages': messages
 			}
-			requests.post(self.config['url'], headers = self.myHeaders, data = json.dumps(myParams))
+			a = requests.post(self.config['url'], headers = self.myHeaders, data = json.dumps(myParams))
 		return True

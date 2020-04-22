@@ -14,10 +14,10 @@ targets = doc('.fLtBx>tbody>tr')
 
 # 漲停 + 80塊以上
 
-rules = {'price': 80, 'percent': 9}
-code = stockToolService.filterStockAndReturnCodes(doc, targets, rules)
-message = stockToolService.appendStockInfoAndReturnMessages(stockToolService, doc, targets, rules, '漲停 + 80塊以上', code)
-LineNotice.sendMessageToLine(LineNotice, message)
+# rules = {'price': 80, 'percent': 9}
+# code = stockToolService.filterStockAndReturnCodes(doc, targets, rules)
+# message = stockToolService.appendStockInfoAndReturnMessages(stockToolService, doc, targets, rules, '漲停 + 80塊以上', code)
+# LineNotice.sendMessageToLine(LineNotice, message)
 
 # 漲停 + 30塊以上
 
