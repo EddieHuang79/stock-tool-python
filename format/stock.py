@@ -20,3 +20,8 @@ class stockFormat:
 		else:
 			result = ''
 		return result
+	def stockCodeIdMapping(data):
+		result = {}
+		for id in data:
+			result[data[id]['code']] = id
+		return result

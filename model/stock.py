@@ -3,17 +3,9 @@
 
 import pymysql
 from datetime import date, timedelta
+from model.base import baseModel
 
-class stockToolModel:
-
-	conn = pymysql.connect(
-		host = '127.0.0.1', 
-		user = 'root',
-		passwd = "root",
-		db = 'stock-tool',
-		charset = 'utf8mb4',
-		cursorclass = pymysql.cursors.DictCursor
-	)
+class stock(baseModel):
 
 	def getPercentBAndSellBuyPercent(self, stock_id_array, date):
 
@@ -156,7 +148,3 @@ class stockToolModel:
 
 		cur.close() 
 		return info
-
-	def closeConnection(self):
-		self.conn.close()
-		return True

@@ -3,9 +3,10 @@
 
 from datetime import date, timedelta
 from format.stock import stockFormat
-from model.stock import stockToolModel
+from model.stock import stock
+from service.base import baseService
 
-class stockToolService:
+class stockToolService(baseService):
 
 	# 設定日期、資料
 
@@ -34,7 +35,7 @@ class stockToolService:
 
 		if len(code) > 0:
 			message.append('')
-			stock_data = stockToolModel.getPercentBAndSellBuyPercent(stockToolModel, code, self.one_days_ago)
+			stock_data = stock.getPercentBAndSellBuyPercent(stock, code, self.one_days_ago)
 			for item in targets:
 				data = doc(item)('td').text().split(' ')
 				if float(data[3]) >= rules['price'] and float(data[2]) >= rules['percent'] and data[0].isdecimal():
@@ -56,19 +57,19 @@ class stockToolService:
 
 	def getAllStockInfo():
 
-		return stockToolModel.getAllStockInfo(stockToolModel)
+		return stock.getAllStockInfo(stock)
 
 	def getAllStockCategory():
 
-		return stockToolModel.getAllStockCategory(stockToolModel)
+		return stock.getAllStockCategory(stock)
 
 	def getAllStockInfoByCategory(category):
 
-		return stockToolModel.getAllStockInfoByCategory(stockToolModel, category)
+		return stock.getAllStockInfoByCategory(stock, category)
 
 	def getAllStockInfoByPrice(year, priceRule):
 
-		return stockToolModel.getAllStockInfoByPrice(stockToolModel, year, priceRule)
+		return stock.getAllStockInfoByPrice(stock, year, priceRule)
 
 	def getTopLimitData(codeId, year):
 
@@ -79,7 +80,7 @@ class stockToolService:
 		lowToHigh = 0
 		equal = 0
 
-		data = stockToolModel.getStockData(stockToolModel, codeId, year)
+		data = stock.getStockData(stock, codeId, year)
 		for today in data.keys():
 			yesterday = today - 1
 			tomorrow = today + 1
@@ -109,7 +110,7 @@ class stockToolService:
 		lowToHigh = 0
 		equal = 0
 
-		data = stockToolModel.getStockData(stockToolModel, codeId, year)
+		data = stock.getStockData(stock, codeId, year)
 		for today in data.keys():
 			yesterday = today - 1
 			tomorrow = today + 1
@@ -129,10 +130,3 @@ class stockToolService:
 						equal += 1
 
 		return {'total': total, 'highToLow': highToLow, 'lowToHigh': lowToHigh, 'equal': equal}
-
-	# 關閉連線
-
-	def closeConnection():
-
-		return stockToolModel.closeConnection(stockToolModel)
-
