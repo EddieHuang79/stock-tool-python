@@ -55,7 +55,7 @@ class brokerModel(baseModel):
 
 		cur = self.conn.cursor() 
 		sql = '''
-			SELECT broker.code as 'parentCode', broker_branch.id, broker_branch.code FROM broker LEFT JOIN broker_branch ON broker.id = broker_branch.parent_id;
+			SELECT broker.code as 'parentCode', broker_branch.id, broker_branch.code FROM broker LEFT JOIN broker_branch ON broker.id = broker_branch.parent_id WHERE broker_branch.id IS NOT NULL;
 		'''
 		cur.execute(sql.replace('\n\t\t', ' '))
 
@@ -101,3 +101,33 @@ class brokerModel(baseModel):
 		cur.close() 
 
 		return True
+
+	def getBrokerData(self, start_date, end_date, stock_id, broker_branch_id):
+
+		cur = self.conn.cursor()
+		sql = "SELECT "
+		sql += "`stock_info`.`code` as `stock_code`, "
+		sql += "`stock_info`.`name` as `stock_name`, "
+		sql += "`broker_branch`.`code` as `branch_code`, "
+		sql += "`broker_branch`.`name` as `branch_name`, "
+		sql += "`broker_data`.`stock_id`, "
+		sql += "`broker_data`.`data_date`, "
+		sql += "`broker_data`.`buy_number`, "
+		sql += "`broker_data`.`sell_number` "
+		sql += "FROM `broker_data` "
+		sql += "LEFT JOIN `broker_branch` ON `broker_data`.`broker_branch_id` = `broker_branch`.`id` "
+		sql += "LEFT JOIN `stock_info` ON `stock_info`.`id` = `broker_data`.`stock_id` "
+		sql += "WHERE 1 = 1 "
+		sql += "AND `data_date` BETWEEN '"+start_date+"' AND '"+end_date+"'" if start_date != '' and end_date != '' else ""
+		sql += "AND `stock_id` = "+stock_id if stock_id != '' else ""
+		sql += "AND `broker_branch_id` = "+broker_branch_id if broker_branch_id != '' else ""
+
+		cur.execute(sql.replace('\n\t\t', ''))
+
+		result = cur
+
+		self.conn.commit()
+		cur.close() 
+
+		return result
+

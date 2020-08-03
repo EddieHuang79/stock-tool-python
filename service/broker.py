@@ -43,3 +43,7 @@ class brokerService(baseService):
 	def addBrokerData(data):
 
 		return brokerModel.addBrokerData(brokerModel, data)
+
+	def getBrokerData(start_date, end_date, stock_id, broker_branch_id):
+
+		return brokerModel.getBrokerData(brokerModel, start_date, end_date, stock_id, broker_branch_id)

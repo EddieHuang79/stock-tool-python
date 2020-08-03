@@ -25,3 +25,9 @@ class stockFormat:
 		for id in data:
 			result[data[id]['code']] = id
 		return result
+	def getDividendFormat(self, data):
+		return '''	代號: %s
+					名稱: %s
+					除權息日期: %s
+					是否有權證: %s
+				''' %(data['code'], data['name'], data['dividend_date'], data['exist'])

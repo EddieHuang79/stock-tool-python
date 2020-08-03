@@ -148,3 +148,25 @@ class stock(baseModel):
 
 		cur.close() 
 		return info
+
+	def getPartStockInfo(self, begin, limit):
+
+		cur = self.conn.cursor() 
+		sql = '''
+			SELECT id, code, type FROM stock_info
+			WHERE id > %d
+			ORDER BY id
+			LIMIT %d
+		''' %(begin, limit)
+
+		cur.execute(sql.replace('\n\t\t', ' '))
+
+		info = {}
+
+		i = 0
+		for item in cur:
+			info[i] = item
+			i += 1
+
+		cur.close() 
+		return info

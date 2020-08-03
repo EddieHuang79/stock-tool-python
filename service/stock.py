@@ -130,3 +130,7 @@ class stockToolService(baseService):
 						equal += 1
 
 		return {'total': total, 'highToLow': highToLow, 'lowToHigh': lowToHigh, 'equal': equal}
+
+	def getPartStockInfo(begin, limit):
+
+		return stock.getPartStockInfo(stock, begin, limit)	

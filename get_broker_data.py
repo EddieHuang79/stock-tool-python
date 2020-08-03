@@ -46,6 +46,7 @@ while i < 15:
 			redisService.setExcuteDate(redisService, excuteDate)
 		else:
 			canExcute = True
+			print(executeBranchCode)
 			redisService.setExcutedBroker(redisService, executeBranchCode['id'])
 
 	# 拿資料
