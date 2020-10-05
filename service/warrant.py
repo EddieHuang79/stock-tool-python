@@ -13,3 +13,7 @@ class warrantService(baseService):
 	def getLastStockId():
 
 		return warrantModel.getLastStockId(warrantModel)
+
+	def getWarrantData(code):
+
+		return warrantModel.getWarrantData(warrantModel, code)

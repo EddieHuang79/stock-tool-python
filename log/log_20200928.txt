@@ -1,0 +1,14 @@
+[dividendData - 除權息清單] []
+
+[historyDividend - 歷年除權息] {}
+
+[dayList - 除權息前後幾日日期] {}
+
+[dayList - 除權息前後幾日對應股價] {}
+
+[rules - 執行策略] [{"buy": -3, "sell": -3, "buyAt": "open", "sellAt": "close"}, {"buy": -3, "sell": -2, "buyAt": "open", "sellAt": "close"}, {"buy": -3, "sell": -2, "buyAt": "close", "sellAt": "open"}, {"buy": -3, "sell": -2, "buyAt": "open", "sellAt": "open"}, {"buy": -3, "sell": -2, "buyAt": "close", "sellAt": "close"}, {"buy": -3, "sell": -1, "buyAt": "open", "sellAt": "close"}, {"buy": -3, "sell": -1, "buyAt": "close", "sellAt": "open"}, {"buy": -3, "sell": -1, "buyAt": "open", "sellAt": "open"}, {"buy": -3, "sell": -1, "buyAt": "close", "sellAt": "close"}, {"buy": -2, "sell": -2, "buyAt": "open", "sellAt": "close"}, {"buy": -2, "sell": -1, "buyAt": "open", "sellAt": "close"}, {"buy": -2, "sell": -1, "buyAt": "close", "sellAt": "open"}, {"buy": -2, "sell": -1, "buyAt": "open", "sellAt": "open"}, {"buy": -2, "sell": -1, "buyAt": "close", "sellAt": "close"}, {"buy": -1, "sell": -1, "buyAt": "open", "sellAt": "close"}, {"buy": 0, "sell": 0, "buyAt": "open", "sellAt": "close"}, {"buy": 0, "sell": 1, "buyAt": "open", "sellAt": "close"}, {"buy": 0, "sell": 1, "buyAt": "close", "sellAt": "open"}, {"buy": 0, "sell": 1, "buyAt": "open", "sellAt": "open"}, {"buy": 0, "sell": 1, "buyAt": "close", "sellAt": "close"}, {"buy": 0, "sell": 2, "buyAt": "open", "sellAt": "close"}, {"buy": 0, "sell": 2, "buyAt": "close", "sellAt": "open"}, {"buy": 0, "sell": 2, "buyAt": "open", "sellAt": "open"}, {"buy": 0, "sell": 2, "buyAt": "close", "sellAt": "close"}, {"buy": 0, "sell": 3, "buyAt": "open", "sellAt": "close"}, {"buy": 0, "sell": 3, "buyAt": "close", "sellAt": "open"}, {"buy": 0, "sell": 3, "buyAt": "open", "sellAt": "open"}, {"buy": 0, "sell": 3, "buyAt": "close", "sellAt": "close"}, {"buy": 1, "sell": 1, "buyAt": "open", "sellAt": "close"}, {"buy": 1, "sell": 2, "buyAt": "open", "sellAt": "close"}, {"buy": 1, "sell": 2, "buyAt": "close", "sellAt": "open"}, {"buy": 1, "sell": 2, "buyAt": "open", "sellAt": "open"}, {"buy": 1, "sell": 2, "buyAt": "close", "sellAt": "close"}, {"buy": 1, "sell": 3, "buyAt": "open", "sellAt": "close"}, {"buy": 1, "sell": 3, "buyAt": "close", "sellAt": "open"}, {"buy": 1, "sell": 3, "buyAt": "open", "sellAt": "open"}, {"buy": 1, "sell": 3, "buyAt": "close", "sellAt": "close"}, {"buy": 2, "sell": 2, "buyAt": "open", "sellAt": "close"}, {"buy": 2, "sell": 3, "buyAt": "open", "sellAt": "close"}, {"buy": 2, "sell": 3, "buyAt": "close", "sellAt": "open"}, {"buy": 2, "sell": 3, "buyAt": "open", "sellAt": "open"}, {"buy": 2, "sell": 3, "buyAt": "close", "sellAt": "close"}]
+
+[strategyResult - 計算結果] {}
+
+[strategyResult - 最佳三檔] {}
+

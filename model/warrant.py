@@ -36,3 +36,20 @@ class warrantModel(baseModel):
 			result = item['stock_id']
 
 		return result
+
+	def getWarrantData(self, data):
+
+		cur = self.conn.cursor()
+		sql = '''
+			SELECT warrant.exist, stock_info.code FROM warrant LEFT JOIN stock_info ON warrant.stock_id = stock_info.id WHERE stock_info.code IN (%s);
+		''' %(','.join(data))
+
+		cur.execute(sql)
+		cur.close() 
+
+		result = {}
+
+		for item in cur:
+			result[item['code']] = item['exist']
+
+		return result

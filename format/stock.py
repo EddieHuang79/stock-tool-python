@@ -30,4 +30,10 @@ class stockFormat:
 					名稱: %s
 					除權息日期: %s
 					是否有權證: %s
-				''' %(data['code'], data['name'], data['dividend_date'], data['exist'])
+
+					多方最佳3組獲利
+					%s
+
+					空方最佳3組獲利
+					%s
+				''' %(data['code'], data['name'], data['dividend_date'], data['exist'], data['best'], data['worst'])

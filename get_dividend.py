@@ -8,12 +8,16 @@ from pyquery import PyQuery as pq
 from service.dividend import dividendService
 import sys
 
+# lastStockId 不要-1 帶指定目標
 lastStockId = dividendService.getLastStockId() if len(sys.argv) < 2 else int(sys.argv[1])
+# lastStockId = dividendService.getUpdateFailStockId() if len(sys.argv) < 2 else int(sys.argv[1])
 existData = dividendService.getExistData(int(lastStockId))
-lastStockId = lastStockId if len(sys.argv) < 2 else lastStockId - 1
+# lastStockId = lastStockId if len(sys.argv) < 2 else lastStockId - 1
+lastStockId = lastStockId - 1
 stockInfo = stockToolService.getPartStockInfo(int(lastStockId), 1)
 exist = False
 for index in stockInfo:
+	print(stockInfo[index]['id'])
 	print(stockInfo[index]['code'])
 	source = stockApi.getDividend(str(stockInfo[index]['code']))
 	doc = pq(source)
@@ -31,7 +35,7 @@ for index in stockInfo:
 			else:
 				type = 3
 
-			if info[3] != '' and ((int(info[0]) in existData) == False):
+			if info[3] != '' and ((int(info[0]) in existData['year']) == False):
 				exist = True
 				insertData = {
 					'stock_id': stockInfo[index]['id'],
@@ -41,12 +45,27 @@ for index in stockInfo:
 					'stock': info[17],
 				}
 				dividendService.addDividend(insertData)
+
+			if info[3] != '' and existData['data'][0]['type'] == 3 and existData['data'][0]['dividend_date'].strftime('%Y-%m-%d') == '2020-01-01':
+				exist = True
+				updateData = {
+					'dividend_date': info[0]+'/'+info[3][3:8],
+					'type': type,
+					'cash': info[14],
+					'stock': info[17],
+				}
+				dividendService.updateDividend(updateData, int(existData['data'][0]['id']))
+
 	# if exist == False:
 	# 	insertData = {
 	# 		'stock_id': stockInfo[index]['id'],
 	# 		'dividend_date': '2020/01/01',
-	# 		'type': 3,
+	# 		'type': 0,
 	# 		'cash': 0,
 	# 		'stock': 0,
 	# 	}
 	# 	dividendService.addDividend(insertData)	
+
+	# if exist == False:
+	# 	print('No Data')
+	# 	dividendService.updateDividendToNoData(int(existData['data'][0]['id']))	

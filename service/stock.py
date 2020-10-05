@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from format.stock import stockFormat
 from model.stock import stock
 from service.base import baseService
+from api.stock import stockApi
+from service.holiday import holidayService
+from service.dividend import dividendService
+import time
 
 class stockToolService(baseService):
 
@@ -133,4 +137,10 @@ class stockToolService(baseService):
 
 	def getPartStockInfo(begin, limit):
 
-		return stock.getPartStockInfo(stock, begin, limit)	
+		return stock.getPartStockInfo(stock, begin, limit)
+
+	def getAssignStockData(code, dateList):
+
+		return stock.getAssignStockData(stock, code, dateList)
+
+

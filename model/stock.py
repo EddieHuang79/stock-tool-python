@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 import pymysql
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from model.base import baseModel
 
 class stock(baseModel):
@@ -167,6 +167,37 @@ class stock(baseModel):
 		for item in cur:
 			info[i] = item
 			i += 1
+
+		cur.close() 
+		return info
+
+	def getAssignStockData(self, code, dateList):
+
+		cur = self.conn.cursor()
+		sql = '''
+			SELECT 
+				stock_info.code, 
+				data_date,
+				open,
+				highest,
+				lowest,
+				close
+			FROM stock_data
+			LEFT JOIN stock_info ON stock_info.id = stock_data.stock_id
+			WHERE stock_info.code = %d
+			AND data_date in ('%s')
+			ORDER BY data_date
+		''' %(int(code), dateList)
+		
+		cur.execute(sql.replace('\n\t\t', ' '))
+
+		info = {}
+
+		for item in cur:
+			if (item['code'] in info) == False:
+				info[item['code']] = {}
+			if item['data_date'] != '':
+				info[item['code']].update({item['data_date'].strftime("%Y-%m-%d"): {'open': item['open'], 'highest': item['highest'], 'lowest': item['lowest'], 'close': item['close']}})
 
 		cur.close() 
 		return info
